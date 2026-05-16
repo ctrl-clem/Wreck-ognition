@@ -10,3 +10,7 @@ Lib
 Scripts
 etc
 share
+classes.dot
+packages.dot
+pyvenv.cfg
+
