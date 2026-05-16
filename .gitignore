@@ -4,7 +4,6 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
-.streamlit/config.toml
 app/weights
 Lib
 Scripts
@@ -13,4 +12,5 @@ share
 classes.dot
 packages.dot
 pyvenv.cfg
+.streamlit/secrets.toml
 

@@ -1,4 +1,7 @@
 import numpy as np
+
+HF_REPO_ID = "clemboss17/wreck-ognition-weights"
+
 WEIGHTS_MAP = {
     "post_only": "app/weights/best_model_post_only_F1_21_04-epochs36-50.pth",
     "post_premask": "app/weights/post_premask.pth",
