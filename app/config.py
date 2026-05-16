@@ -3,10 +3,10 @@ import numpy as np
 HF_REPO_ID = "clemboss17/wreck-ognition-weights"
 
 WEIGHTS_MAP = {
-    "post_only": "app/weights/best_model_post_only_F1_21_04-epochs36-50.pth",
-    "post_premask": "app/weights/post_premask.pth",
-    "pre_post": "app/weights/best_model_pre_post_F1_21_04_epochs36-50.pth",
-    "pre_post_premask": "app/weights/best_model_pre_post_premask_F1_21_04_epochs36-50.pth"
+    "post_only": "best_model_post_only_F1_21_04-epochs36-50.pth",
+    "post_premask": "best_model_post_premask_F1_21_04_epochs36-50.pth",
+    "pre_post": "best_model_pre_post_F1_21_04_epochs36-50.pth",
+    "pre_post_premask": "best_model_pre_post_premask_F1_21_04_epochs36-50.pth"
 
 }
 
