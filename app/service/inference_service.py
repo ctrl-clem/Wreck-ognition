@@ -41,7 +41,7 @@ class InferenceService():
         class_distribution, confidence_score = self.calculate_class_metrics(mask_np, conf_np)
         damage_density = self.calculate_damage_density(mask_np)
         colored_overlay = self.create_colored_overlay(mask_np)
-        gradcam = self.compute_gradcam_post_image(model=model, model_input=model_input)
+        #gradcam = self.compute_gradcam_post_image(model=model, model_input=model_input)
 
         return PredictionResult(
             post_mask=mask_np,
@@ -50,7 +50,7 @@ class InferenceService():
             confidence_scores= confidence_score,
             damage_density=damage_density,
             latency=latency,
-            gradcam_post=gradcam,
+            #gradcam_post=gradcam,
             logits=logits,
             model_name=model_type
         )
