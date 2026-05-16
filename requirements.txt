@@ -6,3 +6,4 @@ torch
 torchvision
 numpy
 grad_cam
+opencv-python-headless
