@@ -99,10 +99,10 @@ def render_inference_tabs(
             st.markdown("---")
 
             # GradCAM Section
-            # st.subheader("Grad-CAM Explainability")
-            # cam_img = generate_cam_visualization(post_img, result.gradcam_post)
-            # st.image(cam_img, width=512, caption="Saliency map showing model focus areas.")
-            # model_entry.gradcam_image = cam_img
+            st.subheader("Grad-CAM Explainability")
+            cam_img = generate_cam_visualization(post_img, result.gradcam_post)
+            st.image(cam_img, width=512, caption="Saliency map showing model focus areas.")
+            model_entry.gradcam_image = cam_img
             if premask is not None:
                 st.markdown("---")
                 st.subheader("Spatial Uncertainty Audits")
