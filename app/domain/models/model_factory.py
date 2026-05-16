@@ -40,6 +40,9 @@ class ModelFactory:
         if instance_key not in cls._instances:
             print(f"--- Loading {model_type} model into memory... ---")
             model_class = cls._model_registry[model_type]
+            cls._instances[instance_key] = ModelFactory.download_and_load_model(model_type,model_class)
+        else:
+            print(f"Returning cached model {model_type}...")
 
             # weights_path = WEIGHTS_MAP.get(model_type)
             # instance = model_class(weights_path)
@@ -47,6 +50,6 @@ class ModelFactory:
             #
             # cls._instances[instance_key] = instance
 
-        #return cls._instances[instance_key]
-        return ModelFactory.download_and_load_model(model_type,model_class)
+        return cls._instances[instance_key]
+
 
