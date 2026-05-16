@@ -19,7 +19,6 @@ class PrePostPremaskModel(AbstractModel):
         state_dict = torch.load(self.weights_path, map_location=torch.device('cpu'))
         self.damage_model.load_state_dict(state_dict)
         self.damage_model.eval()
-        self.damage_model = torch.compile(self.damage_model)
 
 
     def predict(self, inputs:ModelInput):
