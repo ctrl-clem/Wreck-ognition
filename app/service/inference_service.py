@@ -51,6 +51,7 @@ class InferenceService():
             damage_density=damage_density,
             latency=latency,
             #gradcam_post=gradcam,
+            gradcam_post=None,
             logits=logits,
             model_name=model_type
         )
