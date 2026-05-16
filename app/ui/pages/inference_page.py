@@ -119,7 +119,7 @@ model_options = {
     "post_premask": st.checkbox("post-premask")
 }
 
-if st.button("Run Analysis", type="primary", width='content'):
+if st.button("Run Analysis", type="primary", use_container_width=True):
     st.session_state.analysis_complete = True
     selected_models = [name for name, checked in model_options.items() if checked]
     errors = []
