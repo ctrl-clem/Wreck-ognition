@@ -5,4 +5,4 @@ huggingface_hub
 torch
 torchvision
 numpy
-pytorch_grad_cam
+grad_cam
