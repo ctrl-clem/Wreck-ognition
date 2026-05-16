@@ -16,7 +16,7 @@ if "report_service" not in st.session_state:
 inference_service = st.session_state.inference_service
 report_serivce = st.session_state.report_service
 
-inference_page = st.Page("ui/pages/inference_page.py", title="Inference & Ablation", default=True)
+inference_page = st.Page("app/ui/pages/inference_page.py", title="Inference & Ablation", default=True)
 
 pg = st.navigation([inference_page])
 
