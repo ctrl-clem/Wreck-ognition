@@ -1,6 +1,6 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 
-streamlit
+streamlit==1.56.0
 huggingface_hub
 torch
 torchvision
