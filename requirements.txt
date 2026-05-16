@@ -9,3 +9,4 @@ grad_cam
 opencv-python-headless
 Pillow
 reportlab
+streamlit-image-comparison
