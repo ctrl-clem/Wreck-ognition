@@ -6,7 +6,7 @@ from app.repository.preprocessing import Preprocessing
 import numpy as np
 from app.config import CLASS_LABELS, CLASS_COLORS
 import time
-from pytorch_grad_cam import GradCAM
+from pytorch_grad_cam import GradCAM, EigenCAM
 from app.domain.damage_model_architecture.architecture import DamageModel
 from app.domain.models.abstract_model import AbstractModel
 from pytorch_grad_cam.utils.model_targets import SemanticSegmentationTarget
@@ -42,6 +42,7 @@ class InferenceService():
         damage_density = self.calculate_damage_density(mask_np)
         colored_overlay = self.create_colored_overlay(mask_np)
         #gradcam = self.compute_gradcam_post_image(model=model, model_input=model_input)
+        gradcam = self.compute_eigencam_post_image(model=model, model_input=model_input)
 
         return PredictionResult(
             post_mask=mask_np,
@@ -50,8 +51,7 @@ class InferenceService():
             confidence_scores= confidence_score,
             damage_density=damage_density,
             latency=latency,
-            #gradcam_post=gradcam,
-            gradcam_post=None,
+            gradcam_post=gradcam,
             logits=logits,
             model_name=model_type
         )
@@ -308,5 +308,32 @@ class InferenceService():
         premask_np = np.array(premask_img)
         return premask_np > 0
 
+    def compute_eigencam_post_image(self, model, model_input):
+        pytorch_model = model.get_damage_model()
+        wrapped_model = MultiInputCamWrapper(pytorch_model)
+        mode = pytorch_model.mode
 
+        target_layers = [wrapped_model.model.up1]
+
+        cam = EigenCAM(model=wrapped_model, target_layers=target_layers)
+
+        if mode == 'post_only':
+            tensor_list = [model_input.post_image]
+        elif mode == 'post_premask':
+            tensor_list = [model_input.post_image, model_input.pre_mask]
+        elif mode == 'pre_post':
+            tensor_list = [model_input.pre_image, model_input.post_image]
+        elif mode == 'pre_post_premask':
+            tensor_list = [model_input.pre_image, model_input.post_image, model_input.pre_mask]
+        else:
+            tensor_list = [model_input.post_image]
+
+        input_tensor = torch.cat(tensor_list, dim=1)
+
+        grayscale_cam = cam(input_tensor=input_tensor)
+
+        if grayscale_cam is None or len(grayscale_cam) == 0:
+            return np.zeros((input_tensor.shape[2], input_tensor.shape[3]))
+
+        return grayscale_cam[0, :]
 
