@@ -330,20 +330,10 @@ class InferenceService():
 
         input_tensor = torch.cat(tensor_list, dim=1)
 
-        try:
-            grayscale_cam = cam(input_tensor=input_tensor)
+        grayscale_cam = cam(input_tensor=input_tensor)
 
-            if grayscale_cam is None or len(grayscale_cam) == 0:
-                return np.zeros((input_tensor.shape[2], input_tensor.shape[3]))
+        if grayscale_cam is None or len(grayscale_cam) == 0:
+            return np.zeros((input_tensor.shape[2], input_tensor.shape[3]))
 
-            result = grayscale_cam[0, :].copy()  # copy before cleanup
-            return result
-
-        finally:
-            # explicitly free everything
-            del cam
-            del input_tensor
-            del wrapped_model
-            import gc
-            gc.collect()
+        return grayscale_cam[0, :]
 
