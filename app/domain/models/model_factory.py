@@ -6,6 +6,7 @@ from app.config import WEIGHTS_MAP, HF_REPO_ID
 from app.domain.models.pre_post_model import PrePostModel
 from app.domain.models.pre_post_premask_model import PrePostPremaskModel
 import streamlit as st
+from huggingface_hub import hf_hub_download
 
 class ModelFactory:
     _instances: Dict[str, AbstractModel] = {}
