@@ -2,7 +2,7 @@ from typing import Dict, Type
 from app.domain.models.abstract_model import AbstractModel
 from app.domain.models.post_only_model import PostOnlyModel
 from app.domain.models.post_premask_model import PostPremaskModel
-from app.config import WEIGHTS_MAP
+from app.config import WEIGHTS_MAP, HF_REPO_ID
 from app.domain.models.pre_post_model import PrePostModel
 from app.domain.models.pre_post_premask_model import PrePostPremaskModel
 
@@ -27,10 +27,22 @@ class ModelFactory:
             print(f"--- Loading {model_type} model into memory... ---")
             model_class = cls._model_registry[model_type]
 
-            weights_path = WEIGHTS_MAP.get(model_type)
-            instance = model_class(weights_path)
-            instance.load_weights()
+            # weights_path = WEIGHTS_MAP.get(model_type)
+            # instance = model_class(weights_path)
+            # instance.load_weights()
+            #
+            # cls._instances[instance_key] = instance
 
-            cls._instances[instance_key] = instance
+        #return cls._instances[instance_key]
+        return download_and_load_model(model_type,model_class)
 
-        return cls._instances[instance_key]
+    @st.cache_resource
+    def download_and_load_model(model_type, model_class):
+        print(f"--- Downloading and loading {model_type} model... ---")
+        filename = WEIGHTS_MAP.get(model_type)
+
+        weights_path = hf_hub_download(repo_id=HF_REPO_ID, filename=filename, token=st.secrets.get("HF_TOKEN"))
+
+        instance = model_class(weights_path)
+        instance.load_weights()
+        return instance
