@@ -1,0 +1,1 @@
+app/default_pictures/*.png filter=lfs diff=lfs merge=lfs -text
