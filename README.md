@@ -2,7 +2,7 @@
 title: Wreck-ognition App
 emoji: 🌋
 colorFrom: red
-colorTo: orange
+colorTo: indigo
 sdk: streamlit
 sdk_version: "1.45.0"
 python_version: "3.10"
