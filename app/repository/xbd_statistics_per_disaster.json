@@ -1,0 +1,274 @@
+{
+  "disasters": [
+    {
+      "name": "hurricane-michael",
+      "type": "wind",
+      "num_images": 294,
+      "building_counts": {
+        "un-classified": 187,
+        "no-damage": 11634,
+        "minor-damage": 4275,
+        "major-damage": 1536,
+        "destroyed": 616
+      },
+      "sample_chips": [
+        "hurricane-michael_00000124",
+        "hurricane-michael_00000295",
+        "hurricane-michael_00000276"
+      ],
+      "damage_distribution": {
+        "un-classified": 0.01,
+        "no-damage": 0.64,
+        "minor-damage": 0.23,
+        "major-damage": 0.08,
+        "destroyed": 0.03
+      },
+      "avg_buildings_per_image": 62.1
+    },
+    {
+      "name": "socal-fire",
+      "type": "fire",
+      "num_images": 804,
+      "building_counts": {
+        "un-classified": 421,
+        "no-damage": 8825,
+        "minor-damage": 72,
+        "major-damage": 70,
+        "destroyed": 1303
+      },
+      "sample_chips": [
+        "socal-fire_00000329",
+        "socal-fire_00001379",
+        "socal-fire_00000968"
+      ],
+      "damage_distribution": {
+        "un-classified": 0.04,
+        "no-damage": 0.83,
+        "minor-damage": 0.01,
+        "major-damage": 0.01,
+        "destroyed": 0.12
+      },
+      "avg_buildings_per_image": 13.3
+    },
+    {
+      "name": "hurricane-harvey",
+      "type": "flooding",
+      "num_images": 298,
+      "building_counts": {
+        "un-classified": 304,
+        "no-damage": 11194,
+        "minor-damage": 2486,
+        "major-damage": 6895,
+        "destroyed": 411
+      },
+      "sample_chips": [
+        "hurricane-harvey_00000434",
+        "hurricane-harvey_00000504",
+        "hurricane-harvey_00000342"
+      ],
+      "damage_distribution": {
+        "un-classified": 0.01,
+        "no-damage": 0.53,
+        "minor-damage": 0.12,
+        "major-damage": 0.32,
+        "destroyed": 0.02
+      },
+      "avg_buildings_per_image": 71.4
+    },
+    {
+      "name": "mexico-earthquake",
+      "type": "earthquake",
+      "num_images": 113,
+      "building_counts": {
+        "un-classified": 58,
+        "no-damage": 31489,
+        "minor-damage": 152,
+        "major-damage": 42,
+        "destroyed": 2
+      },
+      "sample_chips": [
+        "mexico-earthquake_00000065",
+        "mexico-earthquake_00000173",
+        "mexico-earthquake_00000058"
+      ],
+      "damage_distribution": {
+        "un-classified": 0.0,
+        "no-damage": 0.99,
+        "minor-damage": 0.0,
+        "major-damage": 0.0,
+        "destroyed": 0.0
+      },
+      "avg_buildings_per_image": 280.9
+    },
+    {
+      "name": "hurricane-florence",
+      "type": "flooding",
+      "num_images": 298,
+      "building_counts": {
+        "un-classified": 286,
+        "no-damage": 4260,
+        "minor-damage": 125,
+        "major-damage": 1139,
+        "destroyed": 53
+      },
+      "sample_chips": [
+        "hurricane-florence_00000129",
+        "hurricane-florence_00000026",
+        "hurricane-florence_00000253"
+      ],
+      "damage_distribution": {
+        "un-classified": 0.05,
+        "no-damage": 0.73,
+        "minor-damage": 0.02,
+        "major-damage": 0.19,
+        "destroyed": 0.01
+      },
+      "avg_buildings_per_image": 19.7
+    },
+    {
+      "name": "santa-rosa-wildfire",
+      "type": "fire",
+      "num_images": 215,
+      "building_counts": {
+        "un-classified": 43,
+        "no-damage": 8651,
+        "minor-damage": 78,
+        "major-damage": 53,
+        "destroyed": 3273
+      },
+      "sample_chips": [
+        "santa-rosa-wildfire_00000170",
+        "santa-rosa-wildfire_00000254",
+        "santa-rosa-wildfire_00000213"
+      ],
+      "damage_distribution": {
+        "un-classified": 0.0,
+        "no-damage": 0.72,
+        "minor-damage": 0.01,
+        "major-damage": 0.0,
+        "destroyed": 0.27
+      },
+      "avg_buildings_per_image": 56.3
+    },
+    {
+      "name": "hurricane-matthew",
+      "type": "wind",
+      "num_images": 221,
+      "building_counts": {
+        "un-classified": 716,
+        "no-damage": 2064,
+        "minor-damage": 5550,
+        "major-damage": 1623,
+        "destroyed": 1970
+      },
+      "sample_chips": [
+        "hurricane-matthew_00000101",
+        "hurricane-matthew_00000379",
+        "hurricane-matthew_00000293"
+      ],
+      "damage_distribution": {
+        "un-classified": 0.06,
+        "no-damage": 0.17,
+        "minor-damage": 0.47,
+        "major-damage": 0.14,
+        "destroyed": 0.17
+      },
+      "avg_buildings_per_image": 54.0
+    },
+    {
+      "name": "midwest-flooding",
+      "type": "flooding",
+      "num_images": 248,
+      "building_counts": {
+        "un-classified": 345,
+        "no-damage": 7750,
+        "minor-damage": 132,
+        "major-damage": 91,
+        "destroyed": 97
+      },
+      "sample_chips": [
+        "midwest-flooding_00000096",
+        "midwest-flooding_00000298",
+        "midwest-flooding_00000324"
+      ],
+      "damage_distribution": {
+        "un-classified": 0.04,
+        "no-damage": 0.92,
+        "minor-damage": 0.02,
+        "major-damage": 0.01,
+        "destroyed": 0.01
+      },
+      "avg_buildings_per_image": 33.9
+    },
+    {
+      "name": "palu-tsunami",
+      "type": "tsunami",
+      "num_images": 109,
+      "building_counts": {
+        "un-classified": 259,
+        "no-damage": 28715,
+        "minor-damage": 0,
+        "major-damage": 628,
+        "destroyed": 4787
+      },
+      "sample_chips": [
+        "palu-tsunami_00000121",
+        "palu-tsunami_00000184",
+        "palu-tsunami_00000090"
+      ],
+      "damage_distribution": {
+        "un-classified": 0.01,
+        "no-damage": 0.84,
+        "minor-damage": 0.0,
+        "major-damage": 0.02,
+        "destroyed": 0.14
+      },
+      "avg_buildings_per_image": 315.5
+    },
+    {
+      "name": "guatemala-volcano",
+      "type": "volcano",
+      "num_images": 18,
+      "building_counts": {
+        "un-classified": 176,
+        "no-damage": 461,
+        "minor-damage": 12,
+        "major-damage": 9,
+        "destroyed": 25
+      },
+      "sample_chips": [
+        "guatemala-volcano_00000011",
+        "guatemala-volcano_00000018",
+        "guatemala-volcano_00000005"
+      ],
+      "damage_distribution": {
+        "un-classified": 0.26,
+        "no-damage": 0.67,
+        "minor-damage": 0.02,
+        "major-damage": 0.01,
+        "destroyed": 0.04
+      },
+      "avg_buildings_per_image": 37.9
+    }
+  ],
+  "global": {
+    "total_buildings": 155343,
+    "total_images": 2618,
+    "disaster_types": [
+      "flooding",
+      "earthquake",
+      "wind",
+      "tsunami",
+      "fire",
+      "volcano"
+    ],
+    "per_type_distribution": {
+      "wind": 0.19,
+      "flooding": 0.23,
+      "earthquake": 0.2,
+      "fire": 0.15,
+      "tsunami": 0.22,
+      "volcano": 0.0
+    }
+  }
+}
