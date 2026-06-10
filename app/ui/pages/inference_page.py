@@ -169,17 +169,3 @@ if st.button("Run Analysis", type="primary", width='content'):
 
 
 
-
-
-
-
-    #
-    # st.write("AICI")
-    # st.write(st.session_state.report_artifacts.models)
-    # st.write(st.session_state.report_artifacts.post_image)
-    # st.write(st.session_state.report_artifacts.pre_image)
-    # st.write(st.session_state.report_artifacts.comparison)
-    # st.write(st.session_state.report_artifacts.project_id)
-    # st.write(st.session_state.report_artifacts.common_legends)
-
-
