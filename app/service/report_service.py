@@ -8,6 +8,8 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.lib import colors
 from reportlab.lib.units import inch
 from app.domain.report.report_schema import FullReportData
+from streamlit.runtime.uploaded_file_manager import UploadedFile
+
 
 class ReportService:
     def generate_pdf(self, report_data: FullReportData) -> bytes:
@@ -34,7 +36,7 @@ class ReportService:
 
         # --- COVER PAGE ---
         story.append(Spacer(1, 2 * inch))
-        story.append(Paragraph("Model Comparison Audit", title_style))
+        story.append(Paragraph("Model Comparison", title_style))
         story.append(Paragraph(f"Project: {report_data.project_id}", subtitle_style))
         story.append(PageBreak())
 
@@ -119,6 +121,10 @@ class ReportService:
             img = Image.open(buf)
         elif isinstance(img_data, np.ndarray):  # GradCAM Array
             img = Image.fromarray(img_data)
+        elif isinstance(img_data, str):  #string
+            img = Image.open(img_data)
+        elif isinstance(img_data, UploadedFile):
+            img = Image.open(io.BytesIO(img_data.getvalue()))
         else:  # Already a PIL Image
             img = img_data
 
