@@ -6,16 +6,15 @@ import torch
 import torchvision.transforms as transforms
 import torchvision.transforms.functional as TF
 
-st.title("Adding noise Studio")
+st.title("Editing Studio")
 
-st.write("Upload picture:")
+st.write("### Upload picture:")
 uploaded_file = st.file_uploader("Choose a picture", type=["png", "jpg", "jpeg"], label_visibility="collapsed")
 
 if uploaded_file is not None:
     st.divider()
 
     original_image = Image.open(uploaded_file).convert("RGB")
-
     img_col, slider_col = st.columns([0.8, 1.0])
 
     with slider_col:
@@ -28,6 +27,8 @@ if uploaded_file is not None:
         jitter_brightness = st.slider("Brightness Variance", min_value=0.0, max_value=1.0, value=0.0, step=0.05)
         jitter_contrast = st.slider("Contrast Variance", min_value=0.0, max_value=1.0, value=0.0, step=0.05)
         jitter_saturation = st.slider("Saturation Variance", min_value=0.0, max_value=1.0, value=0.0, step=0.05)
+        jitter_hue= st.slider("Hue Variance", min_value=0.0, max_value=0.5, value=0.0, step=0.05)
+
 
     with img_col:
         torch.manual_seed(42)
@@ -38,12 +39,12 @@ if uploaded_file is not None:
         if smoke_opacity > 0:
             img_tensor = add_realistic_smoke(img_tensor, max_opacity=smoke_opacity)
 
-        if jitter_brightness > 0 or jitter_contrast > 0 or jitter_saturation > 0:
+        if jitter_brightness > 0 or jitter_contrast > 0 or jitter_saturation > 0 or jitter_hue > 0:
             jitter = transforms.ColorJitter(
                 brightness=jitter_brightness,
                 contrast=jitter_contrast,
                 saturation=jitter_saturation,
-                hue=0.0
+                hue=jitter_hue
             )
             img_tensor = jitter(img_tensor)
 

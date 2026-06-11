@@ -28,11 +28,7 @@ def render_disaster_groups(grouped: dict[str, list[str]]) -> str | None:
 
     selected = st.session_state.selected_disaster
 
-    st.markdown(
-        "<p style='font-size:30px; letter-spacing:0.08em; text-transform:uppercase; "
-        "color:rgba(255,255,255,255); margin-bottom:1rem'>Disasters By Type</p>",
-        unsafe_allow_html=True,
-    )
+    st.write("# Disasters by type")
 
     cols = st.columns(3)
 
