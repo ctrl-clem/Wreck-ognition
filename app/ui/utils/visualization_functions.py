@@ -8,6 +8,10 @@ import matplotlib.colorbar as mcolorbar
 import io
 import matplotlib.colors as mcolors
 import matplotlib.patheffects as path_effects
+import pandas as pd
+import torch
+import torchvision.transforms as transforms
+import torchvision.transforms.functional as TF
 
 def display_overlay(original_img_file, mask_pil, alpha=0.5):
     original = Image.open(original_img_file).convert("RGB").resize((512, 512))
@@ -173,3 +177,108 @@ def fig_to_pil(fig):
     fig.savefig(buf, format='png', bbox_inches='tight', dpi=150)
     buf.seek(0)
     return Image.open(buf)
+
+
+
+def display_distribution_chart_statistics_page(disaster_info: dict):
+    if not disaster_info:
+        return None
+
+    class_distribution = disaster_info.get("damage_distribution", {})
+    exclude_labels = ["background", "un-classified"]
+
+    filtered_labels = []
+    filtered_values = []
+
+    for label, value in class_distribution.items():
+        if label.lower() not in exclude_labels:
+            pretty_label = label.replace("-", " ").title()
+            filtered_labels.append(pretty_label)
+            filtered_values.append(value*100)
+
+    fig, ax = plt.subplots(figsize=(6, 4))
+
+    bars = ax.bar(filtered_labels, filtered_values, color='#4FACFE', edgecolor='black', linewidth=0.5)
+
+    ax.set_ylabel("Distribution (%)")
+    ax.set_title("Damage Level Distribution")
+
+    plt.xticks(rotation=30, ha='right')
+
+    plt.tight_layout()
+    return fig
+
+
+
+def display_building_pie_chart(disaster_info: dict):
+    if not disaster_info:
+        return None
+
+    building_counts = disaster_info.get("building_counts", {})
+
+    labels = []
+    sizes = []
+    legend_labels = []
+
+    total_buildings = sum(count for count in building_counts.values() if count > 0)
+
+    for label, count in building_counts.items():
+        if count > 0:
+            pretty_label = label.replace("-", " ").title()
+            labels.append(pretty_label)
+            sizes.append(count)
+
+            legend_labels.append(f"{pretty_label}: {count}")
+
+    if not sizes:
+        return None
+
+    random_colors = [np.random.rand(3, ) for _ in range(len(sizes))]
+
+    fig, ax = plt.subplots(figsize=(7, 4))
+
+    def custom_autopct(pct):
+        val = int(round(pct * total_buildings / 100.0))
+        return str(val) if pct >= 5.0 else ''
+
+    wedges, texts, autotexts = ax.pie(
+        sizes,
+        colors=random_colors,
+        autopct=custom_autopct,
+        startangle=140,
+        textprops={'fontsize': 10, 'weight': 'bold'},
+        wedgeprops={'edgecolor': 'black', 'linewidth': 0.5}
+    )
+
+    ax.legend(
+        wedges,
+        legend_labels,
+        title="Damage Levels & Counts",
+        loc="center left",
+        bbox_to_anchor=(1, 0, 0.5, 1)
+    )
+
+    ax.set_title("Building Damage Counts")
+    plt.tight_layout()
+
+    return fig
+
+
+def add_realistic_smoke(img, max_opacity=0.6, blur_kernel_size=61):
+    aug_img = img.clone()
+    _, h, w = aug_img.shape
+
+    downscale_h, downscale_w = h // 8, w // 8
+    noise = torch.rand((1, downscale_h, downscale_w))
+    noise = torch.nn.functional.interpolate(
+        noise.unsqueeze(0), size=(h, w), mode='bilinear', align_corners=False
+    ).squeeze(0)
+
+    noise = TF.gaussian_blur(noise, kernel_size=[blur_kernel_size, blur_kernel_size], sigma=[15.0, 15.0])
+    noise = (noise - noise.min()) / (noise.max() - noise.min() + 1e-6)
+
+    alpha = noise * max_opacity
+    smoke_color = 0.8
+    aug_img = aug_img * (1 - alpha) + (smoke_color * alpha)
+
+    return aug_img

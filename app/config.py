@@ -2,6 +2,10 @@ import numpy as np
 
 HF_REPO_ID = "clemboss17/wreck-ognition-weights"
 
+HF_DATASET_ID = "clemboss17/samples_xbd"
+
+JSON_FILENAME = "xbd_statistics_per_disaster.json"
+
 WEIGHTS_MAP = {
     "post_only": "best_model_post_only_F1_21_04-epochs36-50.pth",
     "post_premask": "best_model_post_premask_F1_21_04_epochs36-50.pth",
