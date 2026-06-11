@@ -14,7 +14,10 @@ st.session_state.selected_disaster = render_disaster_groups(disasters_by_type)
 
 if st.session_state.selected_disaster:
     st.divider()
-    disaster_info = dataset_service.get_disaster_info(st.session_state.selected_disaster)
+    with st.spinner("Loading..."):
+        disaster_info = dataset_service.get_disaster_info(st.session_state.selected_disaster)
+        pictures = dataset_service.get_disaster_pictures(st.session_state.selected_disaster)
+
 
     if disaster_info:
         pretty_title = st.session_state.selected_disaster.replace("-", " ").title()
@@ -45,7 +48,6 @@ if st.session_state.selected_disaster:
             if pie_fig:
                 st.pyplot(pie_fig, use_container_width=True)
 
-        pictures = dataset_service.get_disaster_pictures(st.session_state.selected_disaster)
         for name, images in pictures.items():
             st.write(f"### {name}")
             col1, col2 = st.columns(2)

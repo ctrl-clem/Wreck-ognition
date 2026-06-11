@@ -31,6 +31,8 @@ if uploaded_file is not None:
 
     with img_col:
         torch.manual_seed(42)
+        image_placeholder = st.empty()
+        download_placeholder = st.empty()
         img_tensor = TF.to_tensor(original_image)
 
         if smoke_opacity > 0:
@@ -48,13 +50,13 @@ if uploaded_file is not None:
         img_tensor = torch.clamp(img_tensor, 0.0, 1.0)
         final_image = TF.to_pil_image(img_tensor)
 
-        st.image(final_image, caption="Modified Picture", use_container_width=True)
+        image_placeholder.image(final_image, caption="Modified Picture", use_container_width=500)
 
         buf = io.BytesIO()
         final_image.save(buf, format="PNG")
         img_bytes = buf.getvalue()
 
-        st.download_button(
+        download_placeholder.download_button(
             label="Download Picture",
             data=img_bytes,
             file_name="noisy_picture.png",
