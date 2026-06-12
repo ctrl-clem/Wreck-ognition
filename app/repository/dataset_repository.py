@@ -51,18 +51,12 @@ def download_pictures_from_hf(disaster_name, sample_pictures):
 
 
 
-
-
-
-
 class DatasetRepository:
     def __init__(self):
         self._json_data: dict | list = load_json_from_hf()
         self._sample_pictures = {}
 
     def get_json_data(self) -> dict | list:
-        print("from repo")
-        print(self._json_data)
         return self._json_data
 
     def get_disaster_types(self):
@@ -85,6 +79,7 @@ class DatasetRepository:
         return disasters
 
     def get_disaster_info(self, disaster_name):
+        disaster_info = None
         for disaster in self._json_data["disasters"]:
             d_name = disaster["name"]
             if d_name == disaster_name:

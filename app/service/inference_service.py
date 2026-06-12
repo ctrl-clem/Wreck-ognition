@@ -263,7 +263,6 @@ class InferenceService():
         return normalized_entropy.squeeze(0).detach().cpu().numpy()
 
     def compute_agreement_entropy(self, logits, premask_np):
-        """Buildings in BOTH prediction and ground truth."""
         entropy_map = self._get_raw_entropy_array(logits)
         preds = torch.argmax(logits, dim=1).squeeze(0).detach().cpu().numpy()
 
@@ -275,7 +274,6 @@ class InferenceService():
         return final_map, round(float(score), 4)
 
     def compute_hallucination_entropy(self, logits, premask_np):
-        """Building in prediction but NOT in ground truth."""
         entropy_map = self._get_raw_entropy_array(logits)
         preds = torch.argmax(logits, dim=1).squeeze(0).detach().cpu().numpy()
 
@@ -286,7 +284,6 @@ class InferenceService():
         return final_map, round(float(score), 4)
 
     def compute_omission_entropy(self, logits, premask_np):
-        """Building in ground truth but NOT in prediction."""
         entropy_map = self._get_raw_entropy_array(logits)
         preds = torch.argmax(logits, dim=1).squeeze(0).detach().cpu().numpy()
 

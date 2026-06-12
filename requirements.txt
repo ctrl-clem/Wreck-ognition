@@ -10,3 +10,4 @@ opencv-python-headless
 Pillow
 reportlab
 streamlit-image-comparison
+pytest
