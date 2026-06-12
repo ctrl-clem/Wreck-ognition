@@ -24,7 +24,7 @@ def run_all_tests(test_path: str = "app/tests") -> int:
     return int(exit_code)
 
 if __name__ == "__main__":
-    run_all_tests("app/tests/dataset_repository_tests.py")
-    run_all_tests("app/tests/inference_service_tests.py")
-    sys.exit(run_all_tests("app/tests/report_service_tests.py"))
+    run_all_tests("app/tests/test_report_service.py")
+    run_all_tests("app/tests/test_inference_service.py")
+    sys.exit(run_all_tests("app/tests/test_dataset_repository.py"))
 
